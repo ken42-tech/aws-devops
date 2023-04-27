@@ -1,22 +1,23 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ken42-aws-devops-deployment
+  name: admission-portal
+  namespace: K8S_NAMESPACE  
   labels:
-    app: ken42-aws-devops
-  namespace: K8S_NAMESPACE
+    app: admission-portal
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ken42-aws-devops
+      app: admission-portal
   template:
     metadata:
       labels:
-        app: ken42-aws-devops
+        app: admission-portal
     spec:
       containers:
-        - name: ken42-aws-devops
+        - name: admission-portal
           image: CONTAINER_IMAGE
           ports:
             - containerPort: 80
@@ -24,4 +25,17 @@ spec:
         - key: "agentpool"
           operator: "Equal"
           value: "application"
-          effect: "NoSchedule"      
+          effect: "NoSchedule"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admission-portal
+  namespace: K8S_NAMESPACE  
+spec:
+  selector:
+    app: admission-portal
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

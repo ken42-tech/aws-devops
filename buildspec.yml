@@ -12,10 +12,10 @@ phases:
         - sed -i 's@K8S_NAMESPACE@'"$NAMESPACE"'@' kube-manifests/01-DEVOPS-Nginx-Deployment.yml
         - echo "Update namespace in Nginx-Deployment.yml file"
         - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@' kube-manifests/01-DEVOPS-Nginx-Deployment.yml
-        - echo "Update namespace in NodePortService.yml file"
-        - sed -i 's@K8S_NAMESPACE@'"$NAMESPACE"'@' kube-manifests/02-DEVOPS-Nginx-NodePortService.yml
-        - echo "Update namespace in ALB-IngressService.yml file"
-        - sed -i 's@K8S_NAMESPACE@'"$NAMESPACE"'@' kube-manifests/03-DEVOPS-Nginx-ALB-IngressService.yml
+        #- echo "Update namespace in NodePortService.yml file"
+        #- sed -i 's@K8S_NAMESPACE@'"$NAMESPACE"'@' kube-manifests/02-DEVOPS-Nginx-NodePortService.yml
+        #- echo "Update namespace in ALB-IngressService.yml file"
+        #- sed -i 's@K8S_NAMESPACE@'"$NAMESPACE"'@' kube-manifests/03-DEVOPS-Nginx-ALB-IngressService.yml
         - echo '=======s@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@'  
         # Verify AWS CLI Version        
         - echo "Verify AWS CLI Version..."
@@ -50,8 +50,8 @@ phases:
       - aws eks update-kubeconfig --name $EKS_CLUSTER_NAME
       # Apply changes to our Application using kubectl
       - echo "Apply changes to kube manifests"            
-      - kubectl apply -f kube-manifests/
-      #- kubectl apply -f kube-manifests/01-DEVOPS-Nginx-Deployment.yml
+      #- kubectl apply -f kube-manifests/
+      - kubectl apply -f kube-manifests/01-DEVOPS-Nginx-Deployment.yml
       - echo "Completed applying changes to Kubernetes Objects"           
       # Create Artifacts which we can use if we want to continue our pipeline for other stages
       - printf '[{"name":"01-DEVOPS-Nginx-Deployment.yml","imageUri":"%s"}]' $REPOSITORY_URI:$TAG > build.json
