@@ -4,6 +4,7 @@ metadata:
   name: ken42-aws-devops-nodeport-service
   labels:
     app: ken42-aws-devops
+  namespace: K8S_NAMESPACE  
   annotations:    
 #Important Note:  Need to add health check path annotations in service level if we are planning to use multiple targets in a load balancer    
     alb.ingress.kubernetes.io/healthcheck-path: /app1/index.html    

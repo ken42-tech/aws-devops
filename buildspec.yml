@@ -11,6 +11,7 @@ phases:
         - echo "Update Image tag in kube-manifest..."
         - sed -i 's@K8S_NAMESPACE@'"$NAMESPACE"'@' kube-manifests/01-DEVOPS-Nginx-Deployment.yml
         - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@' kube-manifests/01-DEVOPS-Nginx-Deployment.yml
+        - sed -i 's@K8S_NAMESPACE@'"$NAMESPACE"'@' kube-manifests/02-DEVOPS-Nginx-NodePortService
         - echo '=======s@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@'  
         # Verify AWS CLI Version        
         - echo "Verify AWS CLI Version..."
