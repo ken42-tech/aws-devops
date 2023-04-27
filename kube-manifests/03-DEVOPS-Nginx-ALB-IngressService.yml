@@ -9,6 +9,7 @@ metadata:
   name: eks-devops-ingress-service
   namespace: K8S_NAMESPACE
 spec:
+  ingressClassName: nginx
   rules:
   - host: nasscom-sample.ken42.com
     http:
