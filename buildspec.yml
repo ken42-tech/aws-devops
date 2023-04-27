@@ -10,8 +10,10 @@ phases:
         # Update Image tag in our Kubernetes Deployment Manifest        
         - echo "Update Image tag in kube-manifest..."
         - sed -i 's@K8S_NAMESPACE@'"$NAMESPACE"'@' kube-manifests/01-DEVOPS-Nginx-Deployment.yml
+        - echo "Update namespace in Nginx-Deployment.yml file"
         - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@' kube-manifests/01-DEVOPS-Nginx-Deployment.yml
-        - sed -i 's@K8S_NAMESPACE@'"$NAMESPACE"'@' kube-manifests/02-DEVOPS-Nginx-NodePortService
+        - echo "Update namespace in NodePortService.yml file"
+        - sed -i 's@K8S_NAMESPACE@'"$NAMESPACE"'@' kube-manifests/02-DEVOPS-Nginx-NodePortService.yml
         - echo '=======s@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@'  
         # Verify AWS CLI Version        
         - echo "Verify AWS CLI Version..."
