@@ -1,22 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eks-devops-deployment
+  name: admission-portal-deploy
   namespace: K8S_NAMESPACE  
   labels:
-    app: eks-devops
+    app: admission-portal-deploy
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: eks-devops
+      app: admission-portal
   template:
     metadata:
       labels:
-        app: eks-devops
+        app: admission-portal
     spec:
       containers:
-        - name: eks-devops
+        - name: admission-portal
           image: CONTAINER_IMAGE
           ports:
             - containerPort: 80
+      tolerations:
+        - key: "agentpool"
+          operator: "Equal"
+          value: "application"
+          effect: "NoSchedule"
