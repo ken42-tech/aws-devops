@@ -25,6 +25,8 @@ phases:
         - $(aws ecr get-login --no-include-email)
         # Update Kube config Home Directory
         - export KUBECONFIG=$HOME/.kube/config
+        - service docker status
+        - service docker start
   build:
     commands:
       # Build Docker Image
