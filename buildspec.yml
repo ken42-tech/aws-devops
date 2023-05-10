@@ -32,7 +32,7 @@ phases:
       # Build Docker Image
       - echo "Build started on `date`"
       - echo "Building the Docker image..."
-      - docker build --tag $REPOSITORY_URI:$TAG .
+      - docker build --tag 268117265615.dkr.ecr.ap-south-1.amazonaws.com/ken42-aws-devops:latest .
   post_build:
     commands:
       # Push Docker Image to ECR Repository
